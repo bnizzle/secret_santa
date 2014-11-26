@@ -12,4 +12,14 @@ class Users(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user = db.Column(db.String(120),unique=True)
-    email = db.Column(db.String(120),unique=True)
+    email = db.Column(db.String(120))
+
+    def check_user(self):
+        user_check = self.user
+        return user_check
+
+class Santa(db.Models):
+    __tablename__ = 'santa'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    giver_user = db.Column(db.String(120), db.ForeignKey('user.user'))
+    recipient = db.Column(db.String(120), db.ForeignKey('user.user'))
